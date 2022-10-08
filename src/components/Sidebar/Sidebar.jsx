@@ -26,7 +26,9 @@ function Sidebar(props) {
 
   const drawer = (
     <div>
+        <Link to="/">
       <img src="https://media-exp1.licdn.com/dms/image/C4D0BAQFBbZ94HAqqCA/company-logo_200_200/0/1658799602360?e=1673481600&v=beta&t=Zfra5h6bRI3346_3VLhRG9QfRAHxyg4Z8X7Z8qBo0GQ" width="100%" height="30%" alt="" />
+      </Link>
       <Divider />
       <List>
         <TextField onChange={(e)=>{
