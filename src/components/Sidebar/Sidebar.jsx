@@ -1,26 +1,22 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
+import { json, Link } from 'react-router-dom';
+import Grid from '../Grid';
 
 const drawerWidth = 240;
 
 function Sidebar(props) {
+    const [search,setSearch] = React.useState("")
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -33,20 +29,16 @@ function Sidebar(props) {
       <img src="https://media-exp1.licdn.com/dms/image/C4D0BAQFBbZ94HAqqCA/company-logo_200_200/0/1658799602360?e=1673481600&v=beta&t=Zfra5h6bRI3346_3VLhRG9QfRAHxyg4Z8X7Z8qBo0GQ" width="100%" height="30%" alt="" />
       <Divider />
       <List>
-        <TextField id="outlined-basic" label="Search" variant="outlined" placeholder='Type anything'/>
+        <TextField onChange={(e)=>{
+            setSearch(e.target.value)
+            localStorage.setItem("search", JSON.stringify(e.target.value))
+        }} id="outlined-basic" label="Search" variant="outlined" placeholder='Type anything'/>
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <Link to="/product">
+       <h1>Products</h1>
+       </Link>
       </List>
     </div>
   );
@@ -73,9 +65,9 @@ function Sidebar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          {/* <Typography variant="h6" noWrap component="div">
             Responsive drawer
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
       <Box
@@ -115,20 +107,8 @@ function Sidebar(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
-        
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+      
+      <Grid/>
       </Box>
     </Box>
   );
